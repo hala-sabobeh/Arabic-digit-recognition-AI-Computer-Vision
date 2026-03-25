@@ -1,0 +1,19 @@
+============================================================
+OPTIMIZED V2 RESULTS
+============================================================
+
+Test Accuracy: 0.9914 (99.14%)
+Previous Best: 0.9886 (98.86%)
+Improvement: +0.28%
+
+Per-Class Accuracy:
+Digit 0: 0.9643
+Digit 1: 1.0000
+Digit 2: 0.9857
+Digit 3: 0.9645
+Digit 4: 1.0000
+Digit 5: 1.0000
+Digit 6: 1.0000
+Digit 7: 1.0000
+Digit 8: 1.0000
+Digit 9: 1.0000
