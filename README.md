@@ -1,3 +1,9 @@
+---
+title: Arabic Handwritten Digit Recognition
+sdk: gradio
+app_file: app.py
+---
+
 # Arabic Handwritten Digit Recognition
 
 TensorFlow CNN for classifying handwritten Arabic numerals (0-9).
@@ -51,6 +57,8 @@ Launch the drawing and upload demo:
 ```bash
 python app.py --model-path models_optimized_v2/best_model.keras
 ```
+
+The same `app.py` runs on Hugging Face Spaces. Set `MODEL_PATH` in the Space settings if the model is not at the default path.
 
 The trained model is not included in the repository. Training and evaluation save plots and metrics in `results_optimized_v2/`.
 
