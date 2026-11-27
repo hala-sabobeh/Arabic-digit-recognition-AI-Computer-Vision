@@ -21,6 +21,7 @@ Thumbs.db
 *.keras
 *.h5
 *.hdf5
+models_optimized_v2/
 
 # Dataset
 ANGKA ARAB/
