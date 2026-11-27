@@ -1,109 +1,67 @@
-# Handwritten Arabic Digit Recognition — CNN
+# Arabic Handwritten Digit Recognition
 
-A convolutional neural network achieving **99.14% accuracy** on handwritten Arabic digit classification (digits ٠–٩), built with Python and PyTorch/TensorFlow.
+TensorFlow CNN for classifying handwritten Arabic numerals (0-9).
 
-**Author:** Hala Sabobeh
+![Gradio demo](assets/demo.gif)
 
----
+## Dataset
 
-## Overview
+Uses the [Mendeley Handwritten Arabic Numerals (0-9) dataset](https://data.mendeley.com/datasets/5hpkf8v7bg/1) by Huzain Azis and Intan Novita Saly (CC BY-NC 3.0): 9,350 images resized to 64×64 pixels. The documented split is 6,544 training, 1,403 validation, and 1,403 test images.
 
-Handwritten Arabic digit recognition is a challenging computer vision problem due to the diverse writing styles across different writers. This project trains a CNN on the **MADBase** (Modified Arabic Handwritten Digits Database) dataset and achieves near state-of-the-art accuracy.
+The dataset directory should contain one folder per digit:
 
-The 10 Arabic digit classes correspond to:
-
-| Arabic | ٠ | ١ | ٢ | ٣ | ٤ | ٥ | ٦ | ٧ | ٨ | ٩ |
-|--------|---|---|---|---|---|---|---|---|---|---|
-| Value  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
-
----
-
-## Results
-
-| Metric | Value |
-|---|---|
-| Test Accuracy | **99.14%** |
-| Dataset | MADBase |
-| Model | CNN |
-
----
-
-## Project Structure
-
+```text
+data/
+├── 0/
+├── 1/
+├── ...
+└── 9/
 ```
-.
-├── arabic_digit_recognition/   # Main package (model, training, utils)
-├── Final+Project.pdf           # Project report
-├── final_vision.pdf            # Final vision report
-└── README.md
-```
-
----
 
 ## Setup
 
-**1. Clone the repo**
-```bash
-git clone https://github.com/hala-sabobeh/Arabic-digit-recognition-AI-Computer-Vision.git
-cd Arabic-digit-recognition-AI-Computer-Vision
-```
+Use Python 3.11 or 3.12.
 
-**2. Install dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-**3. Download the dataset**
-
-This project uses the [MADBase dataset](http://datacenter.aucegypt.edu/shazeem/) — 70,000 handwritten Arabic digit images (60,000 training / 10,000 test), each 28×28 pixels.
-
-Place the dataset under:
-```
-data/
-├── train/
-└── test/
-```
-
----
-
 ## Usage
 
-**Train the model:**
+Train and save the best model to `models_optimized_v2/best_model.keras`:
+
 ```bash
-cd arabic_digit_recognition
-python train.py
+python train.py --data-dir data
 ```
 
-**Evaluate on the test set:**
+Evaluate the saved model on the test split:
+
 ```bash
-python evaluate.py
+python evaluate.py --data-dir data --model-path models_optimized_v2/best_model.keras
 ```
 
----
+Predict a digit from an image:
 
-## Model Architecture
+```bash
+python predict.py path/to/digit.png --model-path models_optimized_v2/best_model.keras
+```
 
-The CNN is designed for 28×28 grayscale images with 10 output classes:
+Launch the drawing and upload demo:
 
-- Convolutional blocks with ReLU activation and max pooling
-- Batch normalization for stable training
-- Dropout for regularization
-- Fully connected output layer with softmax
+```bash
+python app.py --model-path models_optimized_v2/best_model.keras
+```
 
----
+The trained model is not included in the repository. Training and evaluation save plots and metrics in `results_optimized_v2/`.
 
-## Dataset
+## Results
 
-**MADBase** (Modified Arabic Handwritten Digits Database):
-- 70,000 images total — 60,000 training, 10,000 test
-- 10 classes (digits 0–9 in Arabic script)
-- 28×28 grayscale images
-- Collected from 700 writers
+The project report records 99.14% test accuracy on 1,403 images.
 
----
+| Confusion matrix | Training history |
+|---|---|
+| ![Confusion matrix](results_optimized_v2/confusion_matrix.png) | ![Training history](results_optimized_v2/training_history.png) |
 
-## Reports
+## Project report
 
-Full methodology, architecture details, experiments, and analysis are in the included PDF reports:
-- `Final+Project.pdf`
-- `final_vision.pdf`
+See [final_vision.pdf](final_vision.pdf) for methodology and results.
