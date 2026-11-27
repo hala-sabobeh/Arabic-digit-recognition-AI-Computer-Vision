@@ -1,4 +1,5 @@
 import argparse
+import os
 from pathlib import Path
 
 import numpy as np
@@ -43,8 +44,8 @@ def main():
     parser = argparse.ArgumentParser(description="Launch the Gradio digit demo.")
     parser.add_argument(
         "--model-path",
-        default="models_optimized_v2/best_model.keras",
-        help="Path to a trained Keras model.",
+        default=os.environ.get("MODEL_PATH", "models_optimized_v2/best_model.keras"),
+        help="Path to a trained Keras model (defaults to $MODEL_PATH).",
     )
     args = parser.parse_args()
     create_demo(args.model_path).launch(server_name="0.0.0.0")

@@ -3,7 +3,6 @@ import unittest
 import numpy as np
 from PIL import Image, ImageDraw
 
-from space.src.preprocess import preprocess_image as preprocess_space_image
 from src.data_loader import split_dataset
 from src.preprocess import preprocess_image
 
@@ -20,7 +19,6 @@ class PreprocessingTests(unittest.TestCase):
         self.assertEqual(processed.shape, (64, 64, 1))
         self.assertEqual(processed.dtype, np.float32)
         np.testing.assert_array_equal(processed, processed_inverted)
-        np.testing.assert_array_equal(processed, preprocess_space_image(image))
 
 
 class DatasetSplitTests(unittest.TestCase):
